@@ -1,0 +1,91 @@
+{% extends 'inc/nav.html' %} {% load static %} {% block content %} 
+
+
+<nav class="bg-gray-200 p-4">
+  <ol class="list-none p-0 inline-flex">
+    <li class="flex items-center">
+      <a href="{% url 'home' %}" class="text-gray-600">Home</a>
+      <svg class="fill-current w-4 h-4 mx-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <path d="M5.293,7.293l4-4C9.488,3.105,9.744,3,10,3s0.512,0.105,0.707,0.293l4,4C14.902,7.488,15,7.744,15,8s-0.098,0.512-0.293,0.707 l-4,4C10.512,12.895,10.256,13,10,13s-0.512-0.105-0.707-0.293l-4-4C4.098,7.512,4,7.256,4,7S4.098,6.488,4.293,6.293 L5.293,7.293z"/>
+      </svg>
+    </li>
+    {% comment %} <li class="flex items-center">
+      <a href="#" class="text-gray-600">Category</a>
+      <svg class="fill-current w-4 h-4 mx-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <path d="M5.293,7.293l4-4C9.488,3.105,9.744,3,10,3s0.512,0.105,0.707,0.293l4,4C14.902,7.488,15,7.744,15,8s-0.098,0.512-0.293,0.707 l-4,4C10.512,12.895,10.256,13,10,13s-0.512-0.105-0.707-0.293l-4-4C4.098,7.512,4,7.256,4,7S4.098,6.488,4.293,6.293 L5.293,7.293z"/>
+      </svg>
+    </li> {% endcomment %}
+    <li class="flex items-center">
+      <a href="#" class="font-bold">Cetegories_products</a>
+    </li>
+  </ol>
+</nav>
+
+{% comment %} {%  category %} {% endcomment %}
+  <div class="container mx-auto py-8 px-4">
+    <div class="lg:flex">
+      <div class="lg:w-96">
+        <img src="{{category.image.url}}" alt="Product Image" class="w-full">
+      </div>
+      <div class="lg:w-1/2 lg:pl-8">
+        <h1 class="text-3xl px-4 font-bold mb-4">{{category.name}}</h1>
+        <p class="text-gray-700 mb-4">      <div class="px-3 pt-1 pb-2">
+          <span
+            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+            >#Normal</span
+          >
+          <span
+            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+            >#travel</span
+          >
+          <span
+            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+            >#winter & summer</span
+          >
+        </div></p>
+      </div>
+    </div>
+  </div>
+{% comment %} {% endfor %} {% endcomment %}
+
+  <!--trending Shoes pages -->
+
+
+{% comment %} recomended {% endcomment %}
+<h2 class="font-mono py-2 pt-3 text-4xl tracking-tight font-extrabold text-red-500 text-center bg-white">
+  Products of this cetegories
+</h2>
+
+<section class="bg-white">
+  <div class="container mx-auto flex flex-wrap flex-col pb-8 justify-between ">
+    <div class="w-full md:w-1/3 xl:w-1/5 p-6 flex ">
+      {% for item in product %}
+      <a href="#" class="p-1 " >
+        {% with product_image=item.images.first %}
+        <img class="hover:grow hover:shadow-lg h-16 " src="{{product_image.image.url}}" alt="item"/>
+        {% endwith %}
+        <div class="pt-3 flex items-center justify-between">
+          <p class="">{{item.name}}</p>
+          <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z" />
+          </svg>
+        </div>
+        <p class="pt-1 text-gray-900">£9.99</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+  
+  <script>
+    function addToCart() {
+      const quantityInput = document.getElementById('product-quantity');
+      const quantity = quantityInput.value;
+      // Do something with the quantity, e.g., add it to the cart
+      console.log('Quantity:', quantity);
+    }
+  </script>
+
+{% endblock content %} 

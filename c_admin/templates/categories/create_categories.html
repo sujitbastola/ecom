@@ -1,0 +1,19 @@
+{% extends 'incs/nav.html' %}
+{% block content %}
+<h2 class="text-center alert alert-info p-2">Create Categories</h2>
+<div class="container">
+    <div class="row text-center p-2">
+        <form action="" method="POST" enctype="multipart/form-data" class="w-3/4 mx-auto">
+            {% csrf_token %}
+            <label for="categoryimage" class="p-2">Category Image: </label>
+            <input type="file" name="image" class="border p-2"> <br>
+            <label for="categoryname" class="p-2">Category Name: </label>
+            <input type="text" name="name" class="border p-2"> <br>
+            <div class="p-2">
+                <input class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit" value="Create" />
+            </div>
+            <a href="{% url 'cadmincategories' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Back To Categories</a>  
+        </form>
+    </div>
+</div>
+{% endblock content %}

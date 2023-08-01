@@ -1,0 +1,42 @@
+{% extends 'inc/nav.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- breadcrumb section -->
+<!-- register.html -->
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="max-w-md w-full  p-8 bg-white shadow-lg">
+    <h2 class="text-3xl font-bold text-center">Register</h2>
+    <form class="space-y-4" method="Post"  action="{% url 'register' %}">
+      {% csrf_token %}
+      <div>
+        <label for="f_name" class="block font-medium  ">First name</label>
+        <input type="text" id="f_name" name="first_name" class="form-input mt-1 block w-full border-dashed border-2 border-sky-500 p-2 " required autofocus>
+      </div>
+      <div>
+        <label for="usernames" class="block font-medium  ">Last name</label>
+        <input type="text" id="l_name" name="last_name" class="form-input mt-1 block w-full border-dashed border-2 border-sky-500 p-2 " required autofocus>
+      </div>
+      <div>
+        <label for="emails" class="block font-medium">Email</label>
+        <input type="email" id="emails" name="email_address" class="form-input  block w-full border-dashed border-2 border-sky-500 p-2" required>
+      </div>
+      <div>
+        <label for="passwordss" class="block font-medium">Password</label>
+        <input type="password" id="passwordss" name="passwords" class="form-input mt-1 block w-full border-dashed border-2 border-sky-500 p-2" required>
+      </div>
+      <div>
+        <label for="confirm_password" class="block font-medium">Confirm Password</label>
+        <input type="password" id="confirm_password" name="c_password" class="form-input mt-1 block w-full border-dashed border-2 border-sky-500 p-2" required>
+      </div>
+      <div>
+        <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded">Register</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+{% endblock content %}

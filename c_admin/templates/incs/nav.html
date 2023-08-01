@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecommerce Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.2/tailwind.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    {% comment %} <style>
+      .toggle-panel {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      .toggle-panel.active {
+        transform: translateX(0);
+      }
+    </style> {% endcomment %}
+
+    <script
+    src="https://kit.fontawesome.com/8b0ab91d70.js"
+    crossorigin="anonymous"
+  ></script>
+  </head>
+  <body>
+    <nav class="bg-gray-400 py-3 top-0 sticky">
+      <div class="container mx-auto px-4 text-start">
+        <a href="#" class="text-red-600 hover:text-black font-bold text-xl"
+          >Ecommerce Admin</a
+        >
+        
+      </div>
+      
+    </nav>
+
+    
+    {% comment %} <button
+      class="fixed top-0 left-0 w-12 h-12 bg-gray-400 text-red-600 hover:text-black font-bold text-xl flex items-center justify-center"
+      id="toggleButton"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        class="h-6 w-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h8m-8 6h16"
+        ></path>
+      </svg>
+    </button> {% endcomment %}
+    
+<section class="flex">
+  
+    <div class=" toggle-panel left-0 w-1/6 bg-gray-400 text-black h-screen">
+      <ul class="md:flex-col md:items-center md:justify-center">
+        <hr />
+        <li class="mx-2 my-2">
+          <a
+            href="{% url 'home' %}"
+            class="hover:border-opacity-100 hover:text-red-500 duration-500 cursor-pointer font-bold"
+            ><i class="fa-solid fa-house px-2"></i>Home
+          </a>
+        </li>
+        <hr />
+        <li class="mx-2 my-2">
+          <a
+            href=" {% url 'cadmincategories' %}"
+            class="hover:border-opacity-100 hover:text-red-500 duration-500 cursor-pointer font-bold"
+            ><i class="fa-solid fa-sitemap px-2"></i>Cetogories
+          </a>
+        </li>
+        <hr />
+        <li class="mx-2 my-2">
+          <a
+            href=" {% url 'cadminproducts' %} "
+            class="hover:border-opacity-100 hover:text-red-500 duration-500 cursor-pointer font-bold"
+            ><i class="fa-thin fa-truck px-2"></i>Products
+          </a>
+        </li>
+        <hr />
+        <li class="mx-2 my-2">
+          <a
+            href="#"
+            class="hover:border-opacity-100 hover:text-red-500 duration-500 cursor-pointer font-bold"
+            ><i class="fa-thin fa-file-invoice-dollar px-2"></i>Order
+          </a>
+        </li>
+        <hr />
+        <li class="mx-2 my-2">
+          <a
+            href="{% url 'order' %}"
+            class="hover:border-opacity-100 hover:text-red-500 duration-500 cursor-pointer font-bold"
+            ><i class="fa-solid fa-users-line px-2"></i>Users
+          </a>
+        </li>
+        <hr />
+      </ul>
+      
+    </div>
+  
+  
+    <div class="  px-4 py-8 w-5/6 space">
+      {% block content %}
+      
+      {% endblock content %}
+    </div>
+  
+</section >
+
+    {% comment %} <script>
+      const toggleButton = document.getElementById("toggleButton");
+      const togglePanel = document.querySelector(".toggle-panel");
+      const navbar = document.querySelector("nav");
+
+      toggleButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        togglePanel.classList.toggle("active");
+      });
+
+      // Hide toggle panel when clicking outside of it
+      document.addEventListener("click", (e) => {
+        const target = e.target;
+        if (
+          !target.closest(".toggle-panel") &&
+          togglePanel.classList.contains("active")
+        ) {
+          togglePanel.classList.remove("active");
+        }
+      });
+    </script> {% endcomment %}
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.6/flowbite.min.js"></script>
+  </body>
+</html>

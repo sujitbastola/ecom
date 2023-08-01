@@ -1,0 +1,81 @@
+{% extends 'incs/nav.html' %}
+{% load static %}
+{% block content %}
+<script src="https://cdn.tiny.cloud/1/r6agcln7scaowv7njlzipq0o0bvgvjuygcpyqpxij2m6at8i/tinymce/6/tinymce.min.js"
+referrerpolicy="origin"></script>
+<h2 class="text-center alert alert-info p-2">Create Products</h2>
+
+
+<div class="d-flex justify-content-center align-items-lg-start pt-5 bg-light">
+  {% comment %} <div class="col-12 col-lg-6 col-md-8 col-sm-12 bg-white px-4 py-4 signup-image shadow rounded">  {% endcomment %}
+    <div class="form-style ">
+      <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group pb-3">
+          <select class=" form-control text-muted d-block w-100" id="states" required name="category">
+            <option value="">Choose Category</option>
+            {% for items in categories %}
+            <option value="{{items.name}}">{{items.name}}</option>
+            {% endfor %}
+          </select>
+          <div class="invalid-feedback hidden">
+            Please select a valid category.
+          </div>
+        </div>
+        <div class="form-group pb-3">
+          <input type="text" placeholder="Product Name" class="form-control" id="" aria-describedby="Productname"
+            name="productname">
+        </div>
+
+        <div class="form-group pb-3">
+          <textarea placeholder="Product Description" class="textarea form-control" id="id_productdescription"
+            name="productdescription"></textarea>
+        </div>
+
+        <div class="form-group pb-3">
+          <input type="number" placeholder="Product Price" class="form-control" id="" aria-describedby="Productprice"
+            name="productprice">
+        </div>
+        <div class="form-group pb-3">
+          <input type="number" placeholder="Product Quantity" class="form-control" id=""
+            aria-describedby="Productquantity" name="productquantity">
+        </div>
+        <div class="form-group pb-3">
+          <input type="text" placeholder="Product Brand" class="form-control" id="" aria-describedby="Productbrand"
+            name="productbrand">
+        </div>
+
+        <div class="form-group pb-3 ">
+          <input type="file" class="form-control" id="image" name="images" value="" multiple>
+        </div>
+
+        <div class="pb-2">
+          <button type="submit" class="btn btn-success w-100 font-weight-bold mt-2">Create</button>
+        </div>
+        
+      <a href="{% url 'cadminproducts' %}" class="btn btn-info">Back To Products</a>  
+      </form>
+
+    </div>
+
+  {% comment %} </div> {% endcomment %}
+</div>
+<script>
+  tinymce.init({
+    selector: '.textarea',
+    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ]
+  });
+</script>
+<!-- for ckeditor -->
+<!-- <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+<script>
+  CKEDITOR.replace('id_productdescription');
+</script> -->
+{% endblock content %} 

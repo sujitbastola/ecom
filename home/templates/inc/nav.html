@@ -1,0 +1,245 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://kit.fontawesome.com/8b0ab91d70.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body class="bg-slate-300 m-0">
+    <section class="bg-black text-white shadow md:flex md:justify-between md:items-center space-x-10">
+      <!-- phone no -->
+      <div class="mx-10 flex md:justify-center">
+        <h1 class="">
+          <i class="fa-sharp fa-solid fa-phone px-2"> </i
+          ><a
+            href=" "
+            class="border-b-2 border-red-500 border-opacity-0 hover:border-opacity-100 hover:text-green-200 duration-500 cursor-pointer font-bold"
+          >
+            +977 9745450737 </a
+          >
+        </h1>
+      </div>
+
+      <!-- email -->
+      <div class="md:flex md:justify-start py-3">
+        <h1 class="">
+          <i class="fa-solid fa-envelope px-2"> </i>
+          <a
+            href="#"
+            class="border-b-2 border-red-500 border-opacity-0 hover:border-opacity-100 hover:text-green-200 duration-500 cursor-pointer font-bold"
+            >Sujitbastola@gmail.com</a
+          >
+        </h1>
+      </div>
+
+      {% if not 'is_authenticated' in request.session %}
+      <div class="w-3/12 flex md:justify-start p-3 space-x-8">
+
+        <a
+          href="{% url 'login' %}"
+          data-te-dropdown-ref
+          class="relative hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer"
+          title="Login here"
+        >
+          <i class="fa-solid fa-user fa-lg dropdown-menu"> </i>
+        </a>
+        <a
+          href="{% url 'register' %}"
+          data-te-dropdown-ref
+          class="relative hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer"
+          title="Register here"
+        >
+          <i class="fa-brands fa-readme fa-lg"></i>
+        </a>
+      </div>
+      {% comment %} {% endif %} {% if user.is_authenticated %} {% endcomment %}
+      {% else %}
+      
+        <div class="bg-gray-200 flex justify-center items-center dark:bg-gray-500">
+          <div
+            x-data="{ open: false }"
+            class="bg-white dark:bg-black w-64 shadow flex justify-center items-center"
+          >
+            <div
+              @mouseenter="open = true"
+              @mouseleave="open = false"
+              class="relative border-b-4 border-transparent py-3"
+              :class="{'border-red-700 transform transition duration-300 ': open}"
+              x-transition:enter-end="transform opacity-100 scale-100"
+              x-transition:leave="transition ease-in duration-75"
+              x-transition:leave-start="transform opacity-100 scale-100"
+            >
+              <div
+                class="flex justify-center items-center space-x-3 cursor-pointer"
+              >
+                <div
+                  class="h-8 rounded-full overflow-hidden border-2 dark:border-white border-gray-900"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1610397095767-84a5b4736cbd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+                    alt=""
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="font-semibold dark:text-white text-gray-900 text-lg">
+                  <div class="cursor-pointer">
+                    {{request.session.is_authenticated.first_name}}
+                  </div>
+                </div>
+              </div>
+              <div
+                x-show="open"
+                x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="transform opacity-0 scale-95"
+                x-transition:enter-end="transform opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="transform opacity-100 scale-100"
+                x-transition:leave-end="transform opacity-0 scale-95"
+                class="absolute w-60 px-5 py-3 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent mt-5 opacity-100"
+              >
+                <ul class="space-y-3 dark:text-white bg-opacity-100">
+                  <li class="font-medium">
+                    <a
+                      href="{% url 'logout' %}"
+                      class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600"
+                    >
+                      <div class="mr-3 text-red-600">
+                        <svg
+                          class="w-6 h-6"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                          ></path>
+                        </svg>
+                      </div>
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- buttons -->
+        <div class="w-3/12 flex md:justify-start p-3">
+          <a
+            href=""
+            class="hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer"
+            title="shopping Cart"
+          >
+            <i class="fa-solid fa-cart-shopping fa-lg"></i>
+          </a>
+          <a
+            href="#"
+            class="hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer"
+            title="Add to Wishlist"
+          >
+            <i class="fa-solid fa-heart fa-lg px-10"></i>
+          </a>
+        </div>
+      
+
+      {% endif %}
+    </section>
+
+    <!-- Logo -->
+    <nav class="bg-white shadow md:flex md:items-center md:justify-between">
+      <div>
+        <span class="text-2xl font-[Poppins]">
+          <img
+            class="h-10 inline cursor-pointer ms-4"
+            src="https://w7.pngwing.com/pngs/621/196/png-transparent-e-commerce-logo-logo-e-commerce-electronic-business-ecommerce-angle-text-service.png"
+          />
+        </span>
+      </div>
+
+      <!-- search -->
+      <form
+        class="md-flex w-200 border-collapse"
+        role="search"
+        action="#"
+        method="POST"
+      >
+        {% csrf_token %}
+        <input
+          class="p-4 w-100 justify-center border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 text-green-600 duration-200 cursor-pointer"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          name="q"
+        />
+        <span>
+          <button
+            class="btn p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer"
+            type="submit"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </span>
+      </form>
+
+
+      <!-- component -->
+      <ul class="md:flex md:items-center md:justify-center">
+        <li class="mx-6 my-3">
+          <a
+            href="{% url 'home' %}"
+            class="border-b-2 border-red-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-500 cursor-pointer font-bold"
+            >Home
+          </a>
+        </li>
+        <hr />
+        <li class="mx-6 my-3">
+          <a
+            href=" {% url 'about' %}"
+            class="border-b-2 border-red-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-500 cursor-pointer font-bold"
+            >About
+          </a>
+        </li>
+        <hr />
+        <li class="mx-6 my-3">
+          <a
+            href=" {% url 'offers' %} "
+            class="border-b-2 border-red-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-500 cursor-pointer font-bold"
+            >Offers
+          </a>
+        </li>
+        <hr />
+        <li class="mx-6 my-3">
+          <a
+            href="{% url 'special' %}"
+            class="border-b-2 border-red-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-500 cursor-pointer font-bold"
+            >Special
+          </a>
+        </li>
+        <hr />
+        <li class="mx-6 my-3">
+          <a
+            href="{% url 'order' %}"
+            class="border-b-2 border-red-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-500 cursor-pointer font-bold"
+            >Order 
+          </a>
+        </li>
+        <hr />
+      </ul>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+  </body>
+</html>
+
+{% block content %} {% endblock content %}

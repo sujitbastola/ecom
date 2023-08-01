@@ -1,0 +1,26 @@
+{% extends 'incs/nav.html' %}
+{% block content %}
+<h2 class="text-center alert alert-info p-2">Create Categories</h2>
+<div class="container">
+    <div class="row text-center p-2">
+        <form action="" method="POST" enctype="multipart/form-data" class="w-3/4 mx-auto">
+            {% csrf_token %}
+            <div class="form-group pb-3 ">
+                <input type="file" id="image" name="images" value="" class="hidden" style="display:none;" multiple>
+                {% if not categories.image %}
+                <label class="border p-1" for="image">Upload Image</label>
+                {% else %}
+                <label class="border p-1" for="image">Update Image</label><span class="ms-2 text-danger" style="font-size:smaller;">Current Image...</span>
+                {% endif %}
+              </div>
+            <img src="{{categories.image.url}}" alt="">
+            <label for="categoryname" class="p-2">Category Name: </label>
+            <input type="text" name="name" class="border p-2"  value="{{categories.name}}"> <br>
+            <div class="p-2">
+                <input class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit" value="Update" />
+            </div>
+            <a href="{% url 'cadmincategories' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Back To Categories</a>  
+        </form>
+    </div>
+</div>
+{% endblock content %}
